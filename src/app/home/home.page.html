@@ -1,20 +1,34 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Task Manager</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addNewTask()">Add Task</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngIf="tasks?.length; else noTasks">
+    <ion-list>
+      <ion-item *ngFor="let task of tasks | sortByDate: 'dueDate'">
+        <ion-label>
+          <h2>{{ task.taskName }}</h2>
+          <p>Due: {{ task.dueDate | date }}</p>
+          <p>Status: <strong>{{ task.status }}</strong></p>
+          <p>Priority: <strong   [ngClass]="{
+            'low': task.priority === 'Low',
+            'medium': task.priority === 'Medium',
+            'high': task.priority === 'High'
+          }">{{ task.priority }}</strong></p>
+        </ion-label>
+        <ion-button (click)="goToTaskDetails(task.id)">View More</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ng-template #noTasks>
+    <div class="no-tasks">
+      <p>No tasks yet! Click the "+" button to add your first task.</p>
+    </div>
+  </ng-template>
 </ion-content>

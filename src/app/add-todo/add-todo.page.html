@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add Todo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add New Task</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="todoForm">
+
+        <!--Task Name -->
+        <ion-item>
+          <ion-label position="stacked">Task Name:</ion-label>
+          <ion-input type="text" formControlName="taskName" placeholder="Enter Task Name"></ion-input>
+        </ion-item>
+        <ion-text class="text-alert" *ngIf="todoForm.get('taskName')?.touched && todoForm.get('taskName')?.errors?.['required']">
+          *Task Name is requied!
+        </ion-text>
+
+        <!-- Due Date -->
+        <ion-item>
+          <ion-label position="stacked">Due Date:</ion-label>
+          <ion-datetime formControlName="dueDate" presentation="date"></ion-datetime>
+        </ion-item>
+        <ion-text  class="text-alert" *ngIf="todoForm.get('dueDate')?.touched && todoForm.get('dueDate')?.errors?.['required']">
+          *Task Due Date is required!
+        </ion-text>
+
+        <!-- Priority -->
+        <ion-item>
+          <ion-select label="Select Priority" formControlName="priority" position="stacked"
+            label-placement="Select Priority">
+            <ion-select-option value="Low">Low</ion-select-option>
+            <ion-select-option value="Medium">Medium</ion-select-option>
+            <ion-select-option value="High">High</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-text class="text-alert" *ngIf="todoForm.get('priority')?.touched && todoForm.get('priority')?.errors?.['required']">
+          *Task Priority is required!
+        </ion-text>
+
+        <!-- Description -->
+        <ion-item>
+          <ion-label postion="stacked">Description:</ion-label>
+          <ion-textarea  formControlName="description" placeholder="Enter Task Description"></ion-textarea>
+        </ion-item>
+        <ion-text class="text-alert" *ngIf="todoForm.get('description')?.touched && todoForm.get('description')?.errors?.['required']">
+          *Task Description is required!
+        </ion-text>
+
+        <ion-button id="present-alert" expand="block">Create Task</ion-button>
+        <ion-alert trigger="present-alert" class="custom-alert" header="Are you sure you want to create this task?" [buttons]="alertButtons"></ion-alert>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -25,3 +25,47 @@
 #container a {
   text-decoration: none;
 }
+
+.no-tasks {
+  text-align: center;
+  padding: 40px 16px;
+  font-size: 16px;
+  color: #666;
+}
+
+ion-label h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ion-label p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+ion-button{
+  --background: #BA55D3; 
+  --border-radius: 4px;  
+  --padding: 0.5rem 1rem;
+  --height: 40px;      
+  --color: #fff;    
+  --font-weight: bold;  
+  --transition: background-color 0.3s ease
+}
+
+ion-button:hover{
+  --background:  #DA70D6;
+  --color: #fff;
+}
+
+.low {
+  color: #28a745;
+}
+
+.medium {
+  color: #ffc107;
+}
+
+.high {
+  color: #dc3545;
+}

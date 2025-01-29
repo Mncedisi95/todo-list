@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Task Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <!-- Display Overdue Warning -->
+  <ion-card *ngIf="task?.hasOverDue" color="danger">
+    <ion-card-header>
+      <ion-card-title class="overdue-text">⚠️ Overdue Task!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="center-content">
+      This task was due on&nbsp;<strong>{{ task?.dueDate }}</strong>&nbsp;and is not yet completed. Please take action!
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="task">
+    <ion-card-header>
+      <ion-card-title>{{ task?.taskName }}</ion-card-title>
+      <ion-card-subtitle>Due: {{ task?.dueDate | date }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Description:</strong> {{ task?.description }}</p>
+      <p>
+        <strong>Status:</strong>
+        <span [ngClass]="{'overdue-status': task?.hasOverDue}">
+          {{ task?.status }}
+        </span>
+      </p>
+      <p><strong>Priority:</strong> {{ task?.priority }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Reschedule Task</ion-label>
+      <ion-datetime (ionChange)="rescheduleTask($event.detail.value)" [value]="task?.dueDate">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [value]="task?.status" (ionChange)="updateTaskStatus($event.detail.value)">
+        <ion-select-option value="Pending">Pending</ion-select-option>
+        <ion-select-option value="In Progress">In Progress</ion-select-option>
+        <ion-select-option value="Completed">Completed</ion-select-option>
+        <ion-select-option value="Cancelled">Cancelled</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" id="present-alert" color="danger">Remove Task</ion-button>
+  <ion-alert trigger="present-alert" class="custom-alert" header="Are you sure you want to delete this task?" [buttons]="alertButtons"></ion-alert>
+</ion-content>
