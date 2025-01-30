@@ -5,7 +5,7 @@
 3. [Tech stack](#️tech-stack)
 4. [Installation](#installation)
 5. [Usage](#usage)
-6. [Screenshot](#screenshot)
+6. [Screenshots](#screenshots)
 7. [Live Demo](#live-demo)
 8. [Contributors](#contributors)
 
@@ -49,13 +49,13 @@ The To-Do App is a simple yet powerful task management application built with An
 - Edit or delete tasks from the task list by clicking view more.
 - Receive alerts for overdue tasks.
 
-## Screenshot
+## 📸Screenshots
 
 ![Todo-List Screen](src/assets/screenshot/todo-list.png)
 ![Add-Todo Screen](src/assets/screenshot/add-todo.png)
 ![Todo-Detail Screen](src/assets/screenshot/todo-detail.png)
 
-## Live Demo
+## 🌍Live Demo
 
 This Todo website is live at: []
 
